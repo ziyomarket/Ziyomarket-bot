@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import logging
-import asyncio
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 
@@ -28,6 +29,19 @@ DOKON = {
 
 logging.basicConfig(level=logging.INFO)
 
+# Render uchun HTTP server
+class HealthHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Ziyomarket bot ishlayapti!")
+    def log_message(self, format, *args):
+        pass
+
+def run_http():
+    server = HTTPServer(("0.0.0.0", 10000), HealthHandler)
+    server.serve_forever()
+
 def get_cats():
     return list(dict.fromkeys(m["kategoriya"] for m in MAHSULOTLAR))
 
@@ -52,7 +66,6 @@ async def button(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
     q = update.callback_query
     await q.answer()
     d = q.data
-
     back_btn = [[InlineKeyboardButton("Orqaga", callback_data="bosh")]]
 
     if d == "barchasi":
@@ -100,7 +113,7 @@ async def xabar(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
             javob += f"- {m['nomi']} - {m['narx']:,} som/{m['birlik']}\n"
         await update.message.reply_text(javob)
         return
-    if any(w in matn for w in ["salom", "hello", "start"]):
+    if any(w in matn for w in ["salom", "hello"]):
         await start(update, ctx)
     else:
         kb = [
@@ -110,12 +123,15 @@ async def xabar(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Quyidagilardan foydalaning:", reply_markup=InlineKeyboardMarkup(kb))
 
 def main():
+    # HTTP serverni alohida thread da ishga tushir
+    t = threading.Thread(target=run_http, daemon=True)
+    t.start()
+    print("Ziyomarket bot ishga tushdi!")
     app = Application.builder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("menyu", menyu))
     app.add_handler(CallbackQueryHandler(button))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, xabar))
-    print("Ziyomarket bot ishga tushdi!")
     app.run_polling(drop_pending_updates=True)
 
 if __name__ == "__main__":
