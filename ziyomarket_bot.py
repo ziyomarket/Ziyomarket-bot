@@ -8,23 +8,23 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 TOKEN = "8981738699:AAGEw4eARIDlxzva6X6lPuI8c_XFjN_CYYY"
 
 MAHSULOTLAR = [
-    {"nomi": "Qizil olma",     "kategoriya": "Mevalar",       "narx": 12000, "birlik": "kg",   "tavsif": "Yangi terilgan"},
-    {"nomi": "Banan",          "kategoriya": "Mevalar",       "narx": 18000, "birlik": "kg",   "tavsif": "Ekvador banani"},
+    {"nomi": "Banan",     "kategoriya": "Mevalar",       "narx": 25000, "birlik": "kg",   "tavsif": "Ekvador banani"},
+    {"nomi": "Chortoq suv 1L",          "kategoriya": "Ichimliklar",       "narx": 12000, "birlik": "dona",   "tavsif": "Bakal"},
     {"nomi": "Sabzi",          "kategoriya": "Sabzavotlar",   "narx": 5000,  "birlik": "kg",   "tavsif": "Mahalliy sabzi"},
-    {"nomi": "Pomidor",        "kategoriya": "Sabzavotlar",   "narx": 8000,  "birlik": "kg",   "tavsif": "Issiqxona pomidori"},
-    {"nomi": "Sut 1L",         "kategoriya": "Sut mahsuloti", "narx": 9000,  "birlik": "dona", "tavsif": "Toza sigir suti"},
-    {"nomi": "Qatiq",          "kategoriya": "Sut mahsuloti", "narx": 7000,  "birlik": "dona", "tavsif": "500g"},
-    {"nomi": "Non oq",         "kategoriya": "Non",           "narx": 4000,  "birlik": "dona", "tavsif": "Yangi pishirilgan"},
-    {"nomi": "Tovuq goshti",   "kategoriya": "Gosht",         "narx": 35000, "birlik": "kg",   "tavsif": "Toza tovuq"},
-    {"nomi": "Coca-Cola 1.5L", "kategoriya": "Ichimliklar",   "narx": 12000, "birlik": "dona", "tavsif": "Sovuq"},
-    {"nomi": "Shakar",         "kategoriya": "Don va yorma",  "narx": 14000, "birlik": "kg",   "tavsif": "Oq shakar"},
+    {"nomi": "Pomidor",        "kategoriya": "Sabzavotlar",   "narx": 13000,  "birlik": "kg",   "tavsif": "Issiqxona pomidori"},
+    {"nomi": "Suzma",         "kategoriya": "Sut mahsuloti", "narx": 10000,  "birlik": "dona", "tavsif": "Toza sigir suti"},
+    {"nomi": "Qatiq",          "kategoriya": "Sut mahsuloti", "narx": 12000,  "birlik": "dona", "tavsif": "1000g"},
+    {"nomi": "Non oq",         "kategoriya": "Non",           "narx": 3000,  "birlik": "dona", "tavsif": "Yangi pishirilgan"},
+    {"nomi": "Tovuq goshti",   "kategoriya": "Gosht",         "narx": 32000, "birlik": "kg",   "tavsif": "Toza tovuq"},
+    {"nomi": "Fanta 1.5L", "kategoriya": "Ichimliklar",   "narx": 14000, "birlik": "dona", "tavsif": "Sovuq"},
+    {"nomi": "Shakar",         "kategoriya": "Don va yorma",  "narx": 13000, "birlik": "kg",   "tavsif": "Oq shakar"},
 ]
 
 DOKON = {
     "nomi": "Ziyomarket",
-    "telefon": "+998 90 123 45 67",
-    "manzil": "Toshkent sh., Chilonzor tumani",
-    "ish_vaqti": "07:00 - 23:00 (har kuni)",
+    "telefon": "+998941558737",
+    "manzil": "Namangan sh., Kosonsoy tumani Qorasuv MFY",
+    "ish_vaqti": "07:00 - 21:30 (har kuni)",
 }
 
 logging.basicConfig(level=logging.INFO)
